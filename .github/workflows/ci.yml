@@ -1,0 +1,42 @@
+name: CI - Qualite du code
+
+# Declencheurs : a chaque push et chaque pull request sur main
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  qualite-code:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Recuperer le code du repo
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      # 2. Installer Python
+      - name: Installer Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # 3. Installer uniquement les outils necessaires au flow code
+      #    (pas tout requirements.txt : plus rapide en CI)
+      - name: Installer les dependances
+        run: |
+          python -m pip install --upgrade pip
+          pip install prefect black flake8 bandit pytest numpy scikit-learn pandas
+
+      # 4. Lancer le flow qualite Prefect
+      - name: Executer le flow code
+        run: python pipeline_prefect.py --flow code
+
+      # 5. Conserver les rapports comme artefacts telechargeables
+      - name: Archiver les rapports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rapports-qualite
+          path: reports/
