@@ -1,0 +1,176 @@
+Run started:2026-06-09 18:36:49.173954+00:00
+
+Test results:
+>> Issue: [B404:blacklist] Consider possible security implications associated with the subprocess module.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_imports.html#b404-import-subprocess
+   Location: ./pipeline_prefect.py:9:0
+8	import argparse
+9	import subprocess
+10	from prefect import flow, task
+
+--------------------------------------------------
+>> Issue: [B607:start_process_with_partial_path] Starting a process with a partial executable path
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b607_start_process_with_partial_path.html
+   Location: ./pipeline_prefect.py:32:4
+31	    """Installe les dependances du projet."""
+32	    subprocess.run(["pip", "install", "-r", "requirements.txt"], check=True)
+33	    return "dependances installees"
+
+--------------------------------------------------
+>> Issue: [B603:subprocess_without_shell_equals_true] subprocess call - check for execution of untrusted input.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b603_subprocess_without_shell_equals_true.html
+   Location: ./pipeline_prefect.py:32:4
+31	    """Installe les dependances du projet."""
+32	    subprocess.run(["pip", "install", "-r", "requirements.txt"], check=True)
+33	    return "dependances installees"
+
+--------------------------------------------------
+>> Issue: [B607:start_process_with_partial_path] Starting a process with a partial executable path
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b607_start_process_with_partial_path.html
+   Location: ./pipeline_prefect.py:39:13
+38	    """Formatage automatique du code (black) -> reports/black.txt."""
+39	    result = subprocess.run(
+40	        ["black", *TARGET_FILES.split()],
+41	        capture_output=True,
+42	        text=True,
+43	        check=False,
+44	    )
+45	    with open("reports/black.txt", "w") as f:
+
+--------------------------------------------------
+>> Issue: [B603:subprocess_without_shell_equals_true] subprocess call - check for execution of untrusted input.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b603_subprocess_without_shell_equals_true.html
+   Location: ./pipeline_prefect.py:39:13
+38	    """Formatage automatique du code (black) -> reports/black.txt."""
+39	    result = subprocess.run(
+40	        ["black", *TARGET_FILES.split()],
+41	        capture_output=True,
+42	        text=True,
+43	        check=False,
+44	    )
+45	    with open("reports/black.txt", "w") as f:
+
+--------------------------------------------------
+>> Issue: [B607:start_process_with_partial_path] Starting a process with a partial executable path
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b607_start_process_with_partial_path.html
+   Location: ./pipeline_prefect.py:53:13
+52	    """Qualite / style du code (flake8) -> reports/flake8.txt."""
+53	    result = subprocess.run(
+54	        ["flake8", *TARGET_FILES.split(), "--max-line-length=100"],
+55	        capture_output=True,
+56	        text=True,
+57	        check=False,
+58	    )
+59	    report = result.stdout + result.stderr
+
+--------------------------------------------------
+>> Issue: [B603:subprocess_without_shell_equals_true] subprocess call - check for execution of untrusted input.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b603_subprocess_without_shell_equals_true.html
+   Location: ./pipeline_prefect.py:53:13
+52	    """Qualite / style du code (flake8) -> reports/flake8.txt."""
+53	    result = subprocess.run(
+54	        ["flake8", *TARGET_FILES.split(), "--max-line-length=100"],
+55	        capture_output=True,
+56	        text=True,
+57	        check=False,
+58	    )
+59	    report = result.stdout + result.stderr
+
+--------------------------------------------------
+>> Issue: [B607:start_process_with_partial_path] Starting a process with a partial executable path
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b607_start_process_with_partial_path.html
+   Location: ./pipeline_prefect.py:68:13
+67	    """Analyse de securite statique (bandit) -> reports/bandit.txt."""
+68	    result = subprocess.run(
+69	        ["bandit", *TARGET_FILES.split()],
+70	        capture_output=True,
+71	        text=True,
+72	        check=False,
+73	    )
+74	    with open("reports/bandit.txt", "w") as f:
+
+--------------------------------------------------
+>> Issue: [B603:subprocess_without_shell_equals_true] subprocess call - check for execution of untrusted input.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b603_subprocess_without_shell_equals_true.html
+   Location: ./pipeline_prefect.py:68:13
+67	    """Analyse de securite statique (bandit) -> reports/bandit.txt."""
+68	    result = subprocess.run(
+69	        ["bandit", *TARGET_FILES.split()],
+70	        capture_output=True,
+71	        text=True,
+72	        check=False,
+73	    )
+74	    with open("reports/bandit.txt", "w") as f:
+
+--------------------------------------------------
+>> Issue: [B607:start_process_with_partial_path] Starting a process with a partial executable path
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b607_start_process_with_partial_path.html
+   Location: ./pipeline_prefect.py:82:13
+81	    """Execution des tests unitaires (pytest) -> reports/pytest.txt."""
+82	    result = subprocess.run(
+83	        ["pytest", "-q", "test_model_pipeline.py"],
+84	        capture_output=True,
+85	        text=True,
+86	        check=False,
+87	    )
+88	    with open("reports/pytest.txt", "w") as f:
+
+--------------------------------------------------
+>> Issue: [B603:subprocess_without_shell_equals_true] subprocess call - check for execution of untrusted input.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b603_subprocess_without_shell_equals_true.html
+   Location: ./pipeline_prefect.py:82:13
+81	    """Execution des tests unitaires (pytest) -> reports/pytest.txt."""
+82	    result = subprocess.run(
+83	        ["pytest", "-q", "test_model_pipeline.py"],
+84	        capture_output=True,
+85	        text=True,
+86	        check=False,
+87	    )
+88	    with open("reports/pytest.txt", "w") as f:
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 322
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 11
+		Medium: 0
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 0
+		Medium: 0
+		High: 11
+Files skipped (0):
+[main]	INFO	profile include tests: None
+[main]	INFO	profile exclude tests: None
+[main]	INFO	cli include tests: None
+[main]	INFO	cli exclude tests: None
+[main]	INFO	running on Python 3.12.3
